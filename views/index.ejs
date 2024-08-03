@@ -4,29 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube to MP3 Converter</title>
-    <link rel="stylesheet" href="/CSS/styles.CSS">
+    <link rel="stylesheet" href="/CSS/styles.css">
 </head>
 <body>
     <div class="container">
-        <form action ="/convert-mp3" method="POST" id="form">
         <h1>YouTube to MP3 Converter</h1>
-        <div class="input-group">
-            <label for="youtube-url">YouTube Video URL:</label>
-            <input type="text" name="VideoID" placeholder="video ID"><button id="convert-btn" >Convert </button>
-        </div>
-    </form>
+        <form action="/convert-mp3" method="POST" id="form">
+            <div class="input-group">
+                <label for="youtube-url">YouTube Video ID:</label>
+                <input type="text" name="VideoID" id="youtube-url" placeholder="Enter video ID">
+                <button type="submit" id="convert-btn">Convert</button>
+            </div>
+        </form>
     </div>
 
-        <div class="buttom-container">
-        <% if(typeof success != "undefined" && success) { %>
-            <div class="success">
-                <p><%= mp3_title %> </p>
-                <a href="<%= song_link %>"> <button id="download-btn">Download</button></a>
-            </div>
-       <% }  else if(typeof success != "undefined" &&  !success) { %>
-        <div class ="error">
-        <p><%= message %></p>
-        </div>
+    <div class="bottom-container">
+        <% if (typeof success !== "undefined") { %>
+            <% if (success) { %>
+                <div class="success">
+                    <p><%= song_title %></p>
+                    <a href="<%= song_link %>" download>
+                        <button id="download-btn">Download MP3</button>
+                    </a>
+                </div>
+            <% } else { %>
+                <div class="error">
+                    <p><%= message %></p>
+                </div>
+            <% } %>
         <% } %>
     </div>
 </body>
